@@ -12,15 +12,11 @@ class UnescapeHereAction : AnAction() {
         val editor = e.getData(LangDataKeys.EDITOR)
         val document = editor?.document
         val sourceCodeString = document?.text
-        val caretModel = editor!!.caretModel
-        val selectedText = caretModel.currentCaret.selectedText
         WriteCommandAction.runWriteCommandAction(
             project
         ) {
             var formattedStr = ""
-            if (selectedText != null && project != null) {
-                formattedStr = StringEscapeUtils.unescapeJava(selectedText)
-            } else if (sourceCodeString != null && project != null) {
+            if (sourceCodeString != null && project != null) {
                 formattedStr = StringEscapeUtils.unescapeJava(sourceCodeString)
 
                 document.replaceString(
