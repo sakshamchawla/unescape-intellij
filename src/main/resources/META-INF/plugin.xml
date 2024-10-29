@@ -8,14 +8,16 @@
     <name>Unescaper</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="saksham.chawla96@gmail.com" url="github.com/sakshamchawla">Saksham Chawla</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+   Tool to unescape strings in either console or files. <br/>
+   Right click to unescape. In the console, it will open a scratch file with the unescaped content. <br/>
+   Can unescape all text in console window or only selected text. <br/>
+   Right click in editor window to unescape in place.
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
