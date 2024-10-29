@@ -1,16 +1,14 @@
 package com.sakshamc.unescaper
 
-import com.intellij.ide.scratch.ScratchFileCreationHelper
 import com.intellij.ide.scratch.ScratchRootType
-import com.intellij.ide.util.PsiNavigationSupport
 import com.intellij.lang.Language
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.LangDataKeys
-import com.intellij.openapi.application.impl.LaterInvocator
 import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.project.Project
-import com.intellij.psi.PsiManager
 import org.apache.commons.lang.StringEscapeUtils
 
 
@@ -39,16 +37,14 @@ class UnescapeScratchAction : AnAction() {
 
     private fun openFile(text: String, project: Project) {
         val file = ScratchRootType.getInstance().createScratchFile(project, "Unescaped Content", Language.ANY, text)
-        val context = ScratchFileCreationHelper.Context()
-        val navigatable = PsiNavigationSupport.getInstance().createNavigatable(
-            project,
-            file!!, context.caretOffset
-        )
-        navigatable.navigate(!LaterInvocator.isInModalContextForProject(project))
-        val psiFile = PsiManager.getInstance(project).findFile(file)
-        if (context.ideView != null && psiFile != null) {
-            context.ideView.selectElement(psiFile)
-        }
-
+        if (file != null)
+            FileEditorManager.getInstance(project).openTextEditor(
+                OpenFileDescriptor(
+                    project,
+                    file
+                ),
+                true
+            )
     }
+
 }
