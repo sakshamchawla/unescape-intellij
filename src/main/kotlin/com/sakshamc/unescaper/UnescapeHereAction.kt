@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.command.WriteCommandAction
-import org.apache.commons.lang.StringEscapeUtils
+import groovy.json.StringEscapeUtils
 
 class UnescapeHereAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
@@ -18,7 +18,6 @@ class UnescapeHereAction : AnAction() {
             var formattedStr = ""
             if (sourceCodeString != null && project != null) {
                 formattedStr = StringEscapeUtils.unescapeJava(sourceCodeString)
-
                 document.replaceString(
                     0,
                     sourceCodeString.length,
